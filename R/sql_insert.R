@@ -8,16 +8,34 @@
 #'sql_insert("people", c("name", "sex", "age"), c("Maria", "female", "28"))
 #'@export
 
-sql_insert <- function(table, columns, values)
+sql_insert <- function(table, columns = -1, values){
 
+  #checks if there's a connection and stops if it hasn't been initialized
   if(missing(connection)){
     stop("There is no connection")
   }
+  #creates the columns string
+  if(columns!=-1) {
+    columns_str <- paste(columns, collapse = ",")
+    #splice together some brackets and spacing to help with query formation
+    columns_str<- paste(" (", columns_str, ")", collapse="")
+  }
+  #if not specified assume that they want every column and the values column is not needed so make it nonexistant
+  else columns_str <- ""
 
-  columns_str <- paste(columns, collapse = ",")
-  values_str <- paste(columns, collapse = ",")
-
-  input <- sprintf("INSERT INTO %s (%s) VALUES %s", table, columns_str, values_str)
-
-  dbSendQuery(connection, input)
+  #Makes values into a list if it isn't already (used if they input just a single character value not in a list so that below code still works)
+  if(class(values)=="character"){
+    values <- list(values)
+  }
+  #puts it into a list if it was in a dataframe
+  else if(class(values)=="dataframe"){
+    values <- split(values, seq(nrow(values)))
+  }
+  #loops through values and inserts all the values
+  for(i in values){
+    values_str <- paste(values[[i]], collapse = ",")
+    input <- sprintf("INSERT INTO %s%s VALUES %s;", table, columns_str, values_str)
+    dbSendQuery(connection, input)
+  }
   print("Successful insert!")
+}
