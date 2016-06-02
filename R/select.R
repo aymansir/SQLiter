@@ -31,13 +31,14 @@ sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "D
     query <- paste(query, where, collapse = " ")
   }
   #adds the orderby conditions for the query -if specified
-  if(orderType!=-1){
+  if(orderby!=-1){
     orderby_final <- paste(orderby, collapse = ", ")
     paste(query, orderby, toupper(orderType))
   }
   #adds the group_by conditions for the query - if specified
   if(groupBy!=-1){
-    query <- paste(query, groupBy, collapse = " ")
+    groupBy_final <- paste(groupBy, collapse = ", ")
+    query <- paste(query, groupBy_final, collapse = " ")
 
    #adds the having conditions for the query - if specified
     if(having!=-1){
