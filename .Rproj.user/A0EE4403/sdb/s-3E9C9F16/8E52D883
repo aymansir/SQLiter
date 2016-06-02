@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: SQLiteR\nType: Package\nTitle: SQLiteR\nVersion: 0.1.0\nAuthor: Jeffrey Chang\nMaintainer: Jeffrey Chang <chang.jeffrey25@gmail.com>\nDescription: A wrapper around the RSQLite library to make a more user friendly experience\nLicense: GPL-3\nLazyData: TRUE\n",
+    "created" : 1464901247022.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2455702898",
+    "id" : "8E52D883",
+    "lastKnownWriteTime" : 1464901320,
+    "last_content_update" : 1464901320555,
+    "path" : "~/git/SQLiteR/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

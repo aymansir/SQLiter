@@ -1,9 +1,9 @@
 Package: SQLiteR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: SQLiteR
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Jeffrey Chang
+Maintainer: Jeffrey Chang <chang.jeffrey25@gmail.com>
+Description: A wrapper around the RSQLite library to make a more user friendly experience
+License: GPL-3
 LazyData: TRUE
