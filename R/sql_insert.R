@@ -1,8 +1,9 @@
-#'Inserts data into tables
+#'Inserts data into tables with SQL queries
 #'
-#'@param table the name of the table to insert into
-#'@param columns a vector of the columns to insert into
-#'@param values a vector of the values to insert
+#'@param table - the name of the table to insert into
+#'@param columns - a vector of the columns to insert into
+#'@param values - a vector of the values to insert
+#'
 #'@examples
 #'sql_insert("people", c("name", "sex", "age"), c("Maria", "female", "28"))
 #'@export
