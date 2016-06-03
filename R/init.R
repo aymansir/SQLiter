@@ -9,7 +9,3 @@ sql_init <- function(file) {
 
 # testing the function
 
-sql_init('data.db')
-
-sql_init()
-sql_droptable()

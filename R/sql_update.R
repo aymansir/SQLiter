@@ -10,10 +10,14 @@
 #'@export
 
 
-sql_update <- function(table_name, columns, values, where_column, where_value) {
-  if (exists("connection")) {
-    stop("There is no connection open.")
-  }
+sql_update <- function(table_name, columns=-1, values=-1, where_column=-1, where_value=-1) {
+  if (!exists("connection")) stop("There is no connection open.")
+  if (columns== -1) stop("Column was not defined")
+  if (values== -1) stop("Values was not defined")
+  if (where_column==-1) stop("Where column was not defined")
+  if (where_value==-1) stop("Where value was not defined")
+
+
   else {
     # Checks if the length of column is the same length as values
     if(length(columns)==(length(values))) {
