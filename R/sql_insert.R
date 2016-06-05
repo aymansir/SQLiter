@@ -23,6 +23,16 @@ sql_insert <- function(table, values, columns = -1){
   #if not specified assume that they want every column and the values column is not needed so make it nonexistant
   else columns_str <- ""
 
+  #fixes data frames and matrices if a column is a string
+  for(i in 1:ncol(values)){
+    if(class(values[,i])=="factor"){
+      values[,i] <- as.character(values[,i])
+    }
+    if(class(values[,i])=="character"){
+      values[,i] <- paste("\"",values[,i], "\"", sep = "")
+    }
+  }
+
   #Makes values into a list if it isn't already (used if they input just a single character value not in a list so that below code still works)
   if(class(values)=="character"){
     values <- list(values)
@@ -39,6 +49,7 @@ sql_insert <- function(table, values, columns = -1){
   for(i in 1:length(values)){
     values_str <- paste(values[[i]], collapse = ",")
     input <- sprintf("INSERT INTO %s%s VALUES (%s);", table, columns_str, values_str)
+    print(input)
     dbSendQuery(connection, input)
   }
   print("Successful insert!")
