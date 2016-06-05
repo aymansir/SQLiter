@@ -11,7 +11,7 @@
 
 
 sql_update <- function(table_name, columns=-1, values=-1, where_column=-1, where_value=-1) {
-  if (!exists("connection")) stop("There is no connection open.")
+  if (!exists("connection")) stop("There i's no connection open.")
   if (columns== -1) stop("Column was not defined")
   if (values== -1) stop("Values was not defined")
   if (where_column==-1) stop("Where column was not defined")

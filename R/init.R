@@ -7,7 +7,9 @@
 #'sql_init("my_first_database.sqlite")
 #'
 #'@export
+library('RSQLite')
 
+# This funciton checks if the SQLite database already exists on the file system.
 sql_init <- function(file) {
   fileExists = file.exists(file)
   if (missing(file)) {
