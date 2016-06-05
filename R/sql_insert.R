@@ -8,7 +8,7 @@
 #'sql_insert("people", c("name", "sex", "age"), c("Maria", "female", "28"))
 #'@export
 
-sql_insert <- function(table, values, columns = -1, ...){
+sql_insert <- function(table, values, columns = -1){
 
   #checks if there's a connection and stops if it hasn't been initialized
   if(!exists("connection")){
