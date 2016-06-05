@@ -24,28 +24,27 @@ sql_createtable <- function(tbl_name, col_names, col_types, primary_key = -1){
   #adds the column definitions
   for(i in 1:length(col_names)){
     column_def <- paste(col_names[i], toupper(col_types[i]), collapse = " ")
-    column_def <- paste(column_def, ",", collapse ="")
-    query <- paste(query, column_def, collapse = " ")
+    column_def <- paste(column_def, ",", sep ="")
+    query <- paste(query, column_def, sep = " ")
   }
   #adds the primary key definition
   if(primary_key == -1){
-    primKey <- paste("PRIMARY KEY (", paste(col_names, sep=", "), ")", collapse = " ")
+    primKey <- paste("PRIMARY KEY (", paste(col_names, collapse=", "), ")", sep = " ")
   }
   else{
-    primKey <- paste("PRIMARY KEY (", paste(primary_key, sep =", "), ")", collapse = " ")
+    primKey <- paste("PRIMARY KEY (", paste(primary_key, collapse =", "), ")", sep = " ")
   }
-  query <- paste(query, primKey, collapse = " ")
+  query <- paste(query, primKey, sep = " ")
 
   #finishes query
-  query <- paste(query, ");", collapse ="")
-  print(query)
+  query <- paste(query, ");", sep ="")
   #executes query
   dbSendQuery(connection, query)
 
   if(dbExistsTable(connection, tbl_name)){
-    print("Successful table creation!")
+    message("Successful table creation!")
   }
   else{
-    print("Error with table creation!")
+    message("Error with table creation!")
   }
 }

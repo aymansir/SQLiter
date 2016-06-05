@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#'Updates the table with parameter\n#'\n#'@param table connection where the function is  acting on\n#'@param columns a list of columns to update\n#'@param values a list of values to be updated that must be the same size as the columns\n#'\n#'@examples\n#'sql_delete(\"people\", c(\"name = \\\"Maria\\\" OR age = 28 AND gender = \\\"female\\\"\")\n#'sql_delete(\"car\", c(\"make = \\\"Toyota\\\" AND model = \\\"Camry\\\"\"))\n#'@export\n\nlibrary(stringr)\ncar_data_frame <- data.frame(car = c('Civic', 'Sentra', 'Encore'), brand = c('Honda', 'Nissan', 'Buick'), make = c('2002', '2006', '1997'))\nsql_update <- function(table_name, data) {\n  if (!exists(\"connection\")) stop(\"There is no connection open.\")\n  sqlUpdateBuilder(table_name, data)\n}\n\nsqlUpdateBuilder <- function(table, data, where, where_equals) {\n\n  row_names <- names(data)\n\n  if(!(class(data) == 'data.frame' ||'matrix')) stop('Please use a data frame')\n\n  for (i in 1:nrow(data)) {\n    sql <- paste('update',table)\n    set_sql <- ' set '\n    where_sql <- ' where '\n    equal_sql <- '='\n    comma_sql <- \"'\"\n    sql_set = ''\n\n    for (j in 1:ncol(data)) {\n      sql_set <- paste(sql_set, row_names[j],'=\\'', data[i,j], '\\'', ', ', sep='')\n\n    }\n\n    if(i == nrow(data)) {\n      dataFrame <- paste(sql)\n    }\n    else {\n      dataFrame <- paste(sql, ' set ', sql_set, sep = '')\n\n    }\n    dataFrame <- paste(substring(dataFrame, 1, (nchar(dataFrame)-2)))\n    dataFrame <- paste(dataFrame,' where ', where, '=','\\'', where_equals,'\\'', ';', sep='' )\n    print(dataFrame)\n    results <- dbSendQuery(connection, dataFrame)\n\n\n  }\n\n}\n\n\n\n\n\n\n",
+    "created" : 1464943008170.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2728331444",
+    "id" : "549A12E5",
+    "lastKnownWriteTime" : 1465167002,
+    "last_content_update" : 1465167002916,
+    "path" : "~/git/SQLiteR/R/sql_update.R",
+    "project_path" : "R/sql_update.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

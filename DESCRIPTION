@@ -8,7 +8,7 @@ Description: A wrapper around the RSQLite library to make a more user friendly
     experience
 License: GPL-3
 LazyData: TRUE
-Import: RSQLite
+Imports: RSQLite
+Depends: RSQLite
 Suggests:
-    testthat
 RoxygenNote: 5.0.1

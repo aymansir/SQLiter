@@ -6,5 +6,6 @@
 #'@export
 
 sql_end <- function(){
-  rm(connection)
+  rm(connection, pos = .GlobalEnv)
+  message("Connection has been terminated!")
 }

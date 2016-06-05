@@ -41,8 +41,8 @@ sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "A
   }
   #adds the group_by conditions for the query - if specified
   if(groupBy!=-1){
-    groupBy_final <- paste(groupBy, collapse = ", ")
-    query <- paste(query, groupBy_final, sep = " ")
+    groupBy_final <- paste(groupBy, sep = ", ")
+    query <- paste(query, "GROUP BY ", groupBy_final, sep = " ")
 
    #adds the having conditions for the query - if specified
     if(having!=-1){
@@ -51,7 +51,6 @@ sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "A
     }
   }
   query <- paste(query, ";")
-  print(query)
   #runs the query
   results <- dbSendQuery(connection, query)
   dbFetch(results)

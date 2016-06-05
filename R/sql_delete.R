@@ -13,10 +13,14 @@ sql_delete <- function(table, where_condition = "*"){
   if(!exists("connection")){
     stop("There is no connection")
   }
-
-  input <- sprintf("DELETE FROM %s WHERE %s", table, where_condition)
+  if(where_condition == "*"){
+    input <- sprintf("DELETE FROM %s", table)
+  }
+  else{
+    input <- sprintf("DELETE FROM %s WHERE %s", table, where_condition)
+  }
 
   dbSendQuery(connection, input)
-  print("Successful deletion!")
+  message("Successful deletion!")
 }
 
