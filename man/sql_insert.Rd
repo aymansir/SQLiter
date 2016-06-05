@@ -4,7 +4,7 @@
 \alias{sql_insert}
 \title{Inserts data into tables with SQL queries}
 \usage{
-sql_insert(table, values, columns = -1)
+sql_insert(table, values, columns = -1, ...)
 }
 \arguments{
 \item{table}{- the name of the table to insert into}
