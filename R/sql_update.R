@@ -1,19 +1,18 @@
-#'Updates the table with parameter
+
 #'
-#'@param table connection where the function is  acting on
-#'@param columns a list of columns to update
-#'@param values a list of values to be updated that must be the same size as the columns
+#'@param table A string that is the name of the table
+#'@param data a matrix that's m is the bulk of observations and n is the number of features
+#'@param where the column that you are matching
+#'@param the value that is being matched
 #'
 #'@examples
-#'sql_delete("people", c("name = \"Maria\" OR age = 28 AND gender = \"female\"")
-#'sql_delete("car", c("make = \"Toyota\" AND model = \"Camry\""))
+#'sql_update('Cars', car_data_frame, 'Car', 'honda')
 #'@export
 
 library(stringr)
-car_data_frame <- data.frame(car = c('Civic', 'Sentra', 'Encore'), brand = c('Honda', 'Nissan', 'Buick'), make = c('2002', '2006', '1997'))
-sql_update <- function(table_name, data) {
+sql_update <- function(table_name, data, where, where_equals) {
   if (!exists("connection")) stop("There is no connection open.")
-  sqlUpdateBuilder(table_name, data)
+  sqlUpdateBuilder(table_name, data, where, where_equals)
 }
 
 sqlUpdateBuilder <- function(table, data, where, where_equals) {
@@ -25,9 +24,7 @@ sqlUpdateBuilder <- function(table, data, where, where_equals) {
   for (i in 1:nrow(data)) {
     sql <- paste('update',table)
     set_sql <- ' set '
-    where_sql <- ' where '
-    equal_sql <- '='
-    comma_sql <- "'"
+
     sql_set = ''
 
     for (j in 1:ncol(data)) {
