@@ -9,31 +9,51 @@
 #'sql_delete("car", c("make = \"Toyota\" AND model = \"Camry\""))
 #'@export
 
+library(stringr)
+car_data_frame <- data.frame(car = c('Civic', 'Sentra', 'Encore'), brand = c('Honda', 'Nissan', 'Buick'), make = c('2002', '2006', '1997'))
+sql_update <- function(table_name, data) {
+  if (!exists("connection")) stop("There is no connection open.")
+  sqlUpdateBuilder(table_name, data)
+}
 
-sql_update <- function(table_name, columns=-1, values=-1, where_column=-1, where_value=-1) {
-  if (!exists("connection")) stop("There i's no connection open.")
-  if (columns== -1) stop("Column was not defined")
-  if (values== -1) stop("Values was not defined")
-  if (where_column==-1) stop("Where column was not defined")
-  if (where_value==-1) stop("Where value was not defined")
+sqlUpdateBuilder <- function(table, data, where, where_equals) {
 
+  row_names <- names(data)
 
-  else {
-    # Checks if the length of column is the same length as values
-    if(length(columns)==(length(values))) {
-      stop("The list of columns should be the same length as the list of values.")
+  if(!(class(data) == 'data.frame' ||'matrix')) stop('Please use a data frame')
+
+  for (i in 1:nrow(data)) {
+    sql <- paste('update',table)
+    set_sql <- ' set '
+    where_sql <- ' where '
+    equal_sql <- '='
+    comma_sql <- "'"
+    sql_set = ''
+
+    for (j in 1:ncol(data)) {
+      sql_set <- paste(sql_set, row_names[j],'=\'', data[i,j], '\'', ', ', sep='')
+
     }
-    dbSendQuery(conn = connection, paste("UPDATE ", table_name, " SET",get_query(columns, values),
-                                    " WHERE ", where_column, "=", where_value))
+
+    if(i == nrow(data)) {
+      dataFrame <- paste(sql)
+    }
+    else {
+      dataFrame <- paste(sql, ' set ', sql_set, sep = '')
+
+    }
+    dataFrame <- paste(substring(dataFrame, 1, (nchar(dataFrame)-2)))
+    dataFrame <- paste(dataFrame,' where ', where, '=','\'', where_equals,'\'', ';', sep='' )
+    print(dataFrame)
+    results <- dbSendQuery(connection, dataFrame)
+
+
   }
+
 }
 
-get_query <- function(columns,value) {
 
-  string <- ''
-  for (i in 1:length(columns)) {
-    print(i)
-    string <- paste(string, columns[i], '=', value[i])
-  }
-  return(string)
-}
+
+
+
+
