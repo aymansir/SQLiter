@@ -49,8 +49,7 @@ sql_insert <- function(table, values, columns = -1){
   for(i in 1:length(values)){
     values_str <- paste(values[[i]], collapse = ",")
     input <- sprintf("INSERT INTO %s%s VALUES (%s);", table, columns_str, values_str)
-    print(input)
     dbSendQuery(connection, input)
   }
-  print("Successful insert!")
+  message("Successful insert!")
 }

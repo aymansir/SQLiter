@@ -7,4 +7,5 @@
 
 sql_end <- function(){
   rm(connection, pos = .GlobalEnv)
+  message("Connection has been terminated!")
 }

@@ -12,6 +12,6 @@ sql_droptable <- function(table_name) {
   }
   else {
     dbSendQuery(conn = connection, paste("DROP TABLE ", table_name))
-    print("Drop successfull!")
+    message("Drop successfull!")
   }
 }

@@ -21,6 +21,6 @@ sql_delete <- function(table, where_condition = "*"){
   }
 
   dbSendQuery(connection, input)
-  print("Successful deletion!")
+  message("Successful deletion!")
 }
 

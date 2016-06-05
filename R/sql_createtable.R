@@ -42,9 +42,9 @@ sql_createtable <- function(tbl_name, col_names, col_types, primary_key = -1){
   dbSendQuery(connection, query)
 
   if(dbExistsTable(connection, tbl_name)){
-    print("Successful table creation!")
+    message("Successful table creation!")
   }
   else{
-    print("Error with table creation!")
+    message("Error with table creation!")
   }
 }
