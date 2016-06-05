@@ -1,10 +1,10 @@
 #'Removes the database connection
 #'
-#'@example
-#'sql_end
+#'@examples
+#'sql_end()
 #'
 #'@export
 
-sql_end() <- function(){
+sql_end <- function(){
   rm(connection)
 }

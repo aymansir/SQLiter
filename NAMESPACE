@@ -3,6 +3,7 @@
 export(sql_createtable)
 export(sql_delete)
 export(sql_droptable)
+export(sql_end)
 export(sql_init)
 export(sql_insert)
 export(sql_select)

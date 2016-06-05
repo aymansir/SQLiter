@@ -10,7 +10,7 @@
 
 sql_delete <- function(table, where_condition = "*"){
 
-  if(missing(connection)){
+  if(!exists("connection")){
     stop("There is no connection")
   }
 

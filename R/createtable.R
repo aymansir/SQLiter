@@ -12,6 +12,9 @@
 #' @export
 
 sql_createtable <- function(tbl_name, col_names, col_types, primary_key = -1){
+  if(!exists("connection")){
+    stop("There is no connection open.")
+  }
   #makes sure the right number of column names and types are included
   if(length(col_names) != length(col_types)){
     stop("There is a different number of columns given in the name and type fields. Creation cancelled.")

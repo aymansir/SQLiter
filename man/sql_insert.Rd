@@ -4,14 +4,14 @@
 \alias{sql_insert}
 \title{Inserts data into tables with SQL queries}
 \usage{
-sql_insert(table, columns = -1, values)
+sql_insert(table, values, columns = -1)
 }
 \arguments{
 \item{table}{- the name of the table to insert into}
 
-\item{columns}{- a vector of the columns to insert into}
-
 \item{values}{- a vector of the values to insert}
+
+\item{columns}{- a vector of the columns to insert into}
 }
 \description{
 Inserts data into tables with SQL queries
