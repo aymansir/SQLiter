@@ -1,30 +1,29 @@
-#' Initiatilize a global database connection
+#'Creates a global connection to a database
 #'
-#'@param file - path to database file
-#'@return Function returns nothing but creates a global database connection necessary to use other SQLiter functions
+#'@param file - the name of the file to connect to
+#'
 #'@examples
-#'sql_init('data.db')
 #'sql_init()
+#'sql_init("my_first_database.sqlite")
+#'
 #'@export
 
 library(RSQLite)
 sql_init <- function(file) {
+  fileExists = file.exists(file)
   if (missing(file)) {
-    connection <<- dbConnect(dbDriver("SQLite"))
-    print("A connection has been made to a temporary database that will be deleted once the session ends.")
+    connection <<- dbConnect(drv = SQLite())
+    print("You've connected to a new temporary database, this will be deleted at the end of your session.")
   }
-  else {
-    connection <<- dbConnect(dbDriver("SQLite"), file)
+  else connection <<- dbConnect(drv = SQLite(), file)
+  if(fileExists){
+    print("Successful connection the specified database!")
   }
-  if(file.exists(file)){
-    print("A connection has been made to an existing database!")
+  else{
+    print("Successful connection to a new database with your specified name!")
   }
-  else print("A connection has been made to a new database with the specified file name!")
 }
 
 
 # testing the function
 
-sql_init('data.db')
-
-sql_init()

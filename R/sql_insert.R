@@ -31,6 +31,10 @@ sql_insert <- function(table, columns = -1, values){
   else if(class(values)=="dataframe"){
     values <- split(values, seq(nrow(values)))
   }
+  #puts it into a list if it was a matrix
+  else if(class(values)=="matrix"){
+    values <- lapply(1:nrow(values), function(i) values[i,])
+  }
   #loops through values and inserts all the values
   for(i in values){
     values_str <- paste(values[[i]], collapse = ",")
