@@ -9,7 +9,7 @@
 #'@export
 
 sql_droptable <- function(table_name) {
-  if (missing(connection)) {
+  if (!exists("connection")) {
     stop("There is no connection open.")
   }
   else {

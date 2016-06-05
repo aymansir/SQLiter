@@ -17,7 +17,7 @@
 #'@export
 
 sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "DESC", groupBy = -1, having = -1){
-  if(missing(connection)){
+  if(!exists("connection")){
     stop("There is no connection")
   }
 

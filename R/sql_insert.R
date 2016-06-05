@@ -11,7 +11,7 @@
 sql_insert <- function(table, columns = -1, values){
 
   #checks if there's a connection and stops if it hasn't been initialized
-  if(missing(connection)){
+  if(!exists("connection")){
     stop("There is no connection")
   }
   #creates the columns string

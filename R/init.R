@@ -10,7 +10,7 @@
 
 sql_init <- function(file) {
   fileExists = file.exists(file)
-  if (missing(file)) {
+  if (!exists("connection")) {
     connection <<- dbConnect(drv = SQLite())
     print("You've connected to a new temporary database, this will be deleted at the end of your session.")
   }
