@@ -3,7 +3,12 @@
 ~%2Fgit%2FSQLiteR%2FR%2Fhello.R="640B8685"
 ~%2Fgit%2FSQLiteR%2FR%2Finit.R="E64A0259"
 ~%2Fgit%2FSQLiteR%2FR%2Finsert.R="560F8E03"
+<<<<<<< HEAD
 ~%2Fgit%2FSQLiteR%2FR%2Fselect.R="79893FA5"
 ~%2Fgit%2FSQLiteR%2FR%2Fsql_delete.R="34D99003"
 ~%2Fgit%2FSQLiteR%2FR%2Fsql_insert.R="BB30368F"
 ~%2Fgit%2FSQLiteR%2FR%2Fsql_update.R="FA56DB0D"
+=======
+~%2Fgit%2FSQLiteR%2FR%2Fselect.R="DFBA0C4"
+~%2Fgit%2FSQLiteR%2FR%2Fsql_update.R="8483C6E8"
+>>>>>>> 3bccefe56903400177ba0217de60668b33b662f5
