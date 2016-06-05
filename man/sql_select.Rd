@@ -4,8 +4,8 @@
 \alias{sql_select}
 \title{Runs a SQL Select query}
 \usage{
-sql_select(tbl, cols = "*", where = -1, orderby = -1,
-  orderType = "DESC", groupBy = -1, having = -1)
+sql_select(tbl, cols = "*", where = -1, orderby = -1, orderType = "ASC",
+  groupBy = -1, having = -1)
 }
 \arguments{
 \item{tbl}{- the table to run the query on}

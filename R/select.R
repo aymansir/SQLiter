@@ -51,7 +51,6 @@ sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "A
     }
   }
   query <- paste(query, ";")
-  print(query)
   #runs the query
   results <- dbSendQuery(connection, query)
   dbFetch(results)

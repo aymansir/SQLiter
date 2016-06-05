@@ -2,20 +2,17 @@
 % Please edit documentation in R/droptable.R
 \name{sql_droptable}
 \alias{sql_droptable}
-\title{Deletes data from tables with SQL queries}
+\title{Drops tables from a SQlite database}
 \usage{
 sql_droptable(table_name)
 }
 \arguments{
 \item{table}{the table to delete from}
-
-\item{where_condition}{a string of conditions used to specify, need to use escape key for quotes}
 }
 \description{
-Deletes data from tables with SQL queries
+Drops tables from a SQlite database
 }
 \examples{
-sql_delete("people", c("name = \\"Maria\\" OR age = 28 AND gender = \\"female\\"")
-sql_delete("car", c("make = \\"Toyota\\" AND model = \\"Camry\\""))
+sql_droptable("Table_1")
 }
 
