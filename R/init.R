@@ -8,7 +8,6 @@
 #'
 #'@export
 
-library(RSQLite)
 sql_init <- function(file) {
   fileExists = file.exists(file)
   if (missing(file)) {

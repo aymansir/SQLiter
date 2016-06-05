@@ -4,6 +4,11 @@ Title: SQLiteR
 Version: 0.1.0
 Author: Jeffrey Chang
 Maintainer: Jeffrey Chang <chang.jeffrey25@gmail.com>
-Description: A wrapper around the RSQLite library to make a more user friendly experience
+Description: A wrapper around the RSQLite library to make a more user friendly
+    experience
 License: GPL-3
 LazyData: TRUE
+Import: RSQLite
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
