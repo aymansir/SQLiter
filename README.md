@@ -1,0 +1,2 @@
+# SQLiter
+SQLiter is an R package meant to streamline the user experience when using SQL in R. The package acts as a user-friendly wrapper for the more complicated RSQLite package. The SQLiter functions all have the prefix "sql_" for simplicity and are designed to have easier-to-use arguments than the RSQLite functions. The SQL functions that SQLiter supports are SELECT, INSERT, DELETE, CREATE, and DROP. 
