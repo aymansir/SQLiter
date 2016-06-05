@@ -16,7 +16,7 @@
 #'
 #'@export
 
-sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "DESC", groupBy = -1, having = -1){
+sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "ASC", groupBy = -1, having = -1){
   if(!exists("connection")){
     stop("There is no connection")
   }
@@ -26,26 +26,32 @@ sql_select <- function(tbl, cols = "*", where = -1, orderby = -1, orderType = "D
   #adds the column names for the select query
   cols_final <- paste(cols, collapse = ", ")
   query <- paste(query, cols_final, collapse = " ")
+  #adds FROM
+  from_final <- paste("FROM", tbl, collapse = " ")
+  query <- paste(query, from_final, collapse = " ")
   #adds the where conditions for the query
   if(where!=-1){
-    query <- paste(query, where, collapse = " ")
+    where_final <- paste("WHERE", where, collapse = " ")
+    query <- paste(query, where_final, collapse = " ")
   }
   #adds the orderby conditions for the query -if specified
-  if(orderby!=-1){
+  if(orderby[1]!=-1){
     orderby_final <- paste(orderby, collapse = ", ")
-    paste(query, orderby, toupper(orderType))
+    query <- paste(query, "ORDER BY", orderby_final, toupper(orderType), sep = " ")
   }
   #adds the group_by conditions for the query - if specified
   if(groupBy!=-1){
     groupBy_final <- paste(groupBy, collapse = ", ")
-    query <- paste(query, groupBy_final, collapse = " ")
+    query <- paste(query, groupBy_final, sep = " ")
 
    #adds the having conditions for the query - if specified
     if(having!=-1){
-      query <- paste(query, having, collapse = " ")
+      having_final <- paste("HAVING", having, collapse = " ")
+      query <- paste(query, having_final, sep = " ")
     }
   }
-  paste(query, ";")
+  query <- paste(query, ";")
+  print(query)
   #runs the query
   results <- dbSendQuery(connection, query)
   dbFetch(results)
