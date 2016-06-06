@@ -1,4 +1,4 @@
-
+#'Updates an existing data table
 #'
 #'@param table A string that is the name of the table
 #'@param data a matrix that's m is the bulk of observations and n is the number of features
