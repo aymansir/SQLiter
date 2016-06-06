@@ -20,11 +20,11 @@ test_that("Inserting into a table", expect_message(sql_insert("Table_1", data.fr
 #select data from the table
 test_that("Selecting from a table", expect_equal(sql_select("Table_1", where = "c1 >10"), data.frame(c1 = 11:20, c2 = 110:101)))
 
-#delete date from the table
-test_that("Deleting from a table", expect_message(sql_delete("Table_1"), "Successful deletion!"))
-
 #update data from the table
-test_that("Updates the table", expect_message(sql_update("Table_1", data.frame(c1 = 1:20, c2= 120:101), "Change", "14.48763251"), "Update successful!"))
+test_that("Updates the table", expect_message(sql_update("Table_1", c("c1=20","c2=40"),"c1=10"), "Successful update!"))
+
+#delete data from the table
+test_that("Deleting from a table", expect_message(sql_delete("Table_1"), "Successful deletion!"))
 
 #drop table
 test_that("Dropping a table", expect_message(sql_droptable("Table_1"), "Drop successfull!"))

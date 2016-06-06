@@ -8,9 +8,7 @@
 #'sql_update("table_1", list(c("c1 = 301", "c2 =307"), c("c1 =909")), c("c1=300","c1 =99"))
 #'@export
 sql_update <- function(tbl, set, where){
-  if(length(set)!=length(where)){
-    stop("Inconsistent number of queries requested (length of set and where not equal)")
-  }
+  
   if(class(set)=="character"){
     set <- list(set)
   }
@@ -21,6 +19,9 @@ sql_update <- function(tbl, set, where){
   #puts it into a list if it was a matrix
   else if(class(set)=="matrix"){
     set <- lapply(1:nrow(set), function(i) set[i,])
+  }
+  if(length(set)!=length(where)){
+    stop("Inconsistent number of queries requested (length of set and where not equal)")
   }
   #loops through values and inserts all the values
   for(i in 1:length(set)){
