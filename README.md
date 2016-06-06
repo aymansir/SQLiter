@@ -20,10 +20,8 @@ As a vision for simplifying how developers can access SQLite, we made it easier 
 
 *  All functions have a prefix of "sql_"
 *  Install and clone this Github Repository to your project or global directory
-*  Call 
-	```library(SQLiter)```
+*  Call ```library(SQLiter)``` to load the library. 
 
----
 
 ## Code
 
