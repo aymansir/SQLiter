@@ -4,7 +4,7 @@
 \alias{sql_init}
 \title{Creates a global connection to a database}
 \usage{
-sql_init(file)
+sql_init(file = -1)
 }
 \arguments{
 \item{file}{- the name of the file to connect to}

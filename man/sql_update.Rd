@@ -2,23 +2,21 @@
 % Please edit documentation in R/sql_update.R
 \name{sql_update}
 \alias{sql_update}
-\title{Updates the table with parameter}
+\title{Updates an existing data table}
 \usage{
-sql_update(table_name, columns = -1, values = -1, where_column = -1,
-  where_value = -1)
+sql_update(tbl, set, where)
 }
 \arguments{
-\item{columns}{a list of columns to update}
+\item{tbl}{- the table you'd like to perform an update on}
 
-\item{values}{a list of values to be updated that must be the same size as the columns}
+\item{set}{- a list (or vector/matrix/data.frame) containing vectors of values you'd like to update the selected rows with. Each different column change should be an element. Each list element is a different query.}
 
-\item{table}{connection where the function is  acting on}
+\item{where}{- a vector of where conditions for each of your updates}
 }
 \description{
-Updates the table with parameter
+Updates an existing data table
 }
 \examples{
-sql_delete("people", c("name = \\"Maria\\" OR age = 28 AND gender = \\"female\\"")
-sql_delete("car", c("make = \\"Toyota\\" AND model = \\"Camry\\""))
+sql_update("table_1", list(c("c1 = 301", "c2 =307"), c("c1 =909")), c("c1=300","c1 =99"))
 }
 
