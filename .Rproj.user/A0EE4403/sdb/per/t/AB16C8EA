@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Runs a SQL Select query\n#'\n#'@param tbl - the table to run the query on\n#'@param cols - a vector of the column names you'd like to select, default is all of them\n#'@param where - a single string with the where conditions for the query\n#'@param orderby - a vector of the column names you'd like to order by in the query\n#'@param orderType - the type of ordering (ASC | DESC), DESC is default\n#'@param groupBy -a vector of the column names you'd like to group by in the query\n#'@param having -a single string with the having conditions for the query\n#'\n#'@return a dataframe with the results of the query\n#'\n#'@examples\n#'sql_select(table)\n#'sqL_select(table, c(\"col1\", \"col2\"), \"col1>10 AND col2<10\")\n#'\n#'@export\n\nsql_select <- function(tbl, cols = \"*\", where = -1, orderby = -1, orderType = \"ASC\", groupBy = -1, having = -1){\n  if(!exists(\"connection\")){\n    stop(\"There is no connection\")\n  }\n\n  #starts of the query\n  query <- \"SELECT\"\n  #adds the column names for the select query\n  cols_final <- paste(cols, collapse = \", \")\n  query <- paste(query, cols_final, collapse = \" \")\n  #adds FROM\n  from_final <- paste(\"FROM\", tbl, collapse = \" \")\n  query <- paste(query, from_final, collapse = \" \")\n  #adds the where conditions for the query\n  if(where!=-1){\n    where_final <- paste(\"WHERE\", where, collapse = \" \")\n    query <- paste(query, where_final, collapse = \" \")\n  }\n  #adds the orderby conditions for the query -if specified\n  if(orderby[1]!=-1){\n    orderby_final <- paste(orderby, collapse = \", \")\n    query <- paste(query, \"ORDER BY\", orderby_final, toupper(orderType), sep = \" \")\n  }\n  #adds the group_by conditions for the query - if specified\n  if(groupBy!=-1){\n    groupBy_final <- paste(groupBy, collapse = \", \")\n    query <- paste(query, groupBy_final, sep = \" \")\n\n   #adds the having conditions for the query - if specified\n    if(having!=-1){\n      having_final <- paste(\"HAVING\", having, collapse = \" \")\n      query <- paste(query, having_final, sep = \" \")\n    }\n  }\n  query <- paste(query, \";\")\n  print(query)\n  #runs the query\n  results <- dbSendQuery(connection, query)\n  dbFetch(results)\n}\n",
+    "created" : 1464907350274.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1313513028",
+    "id" : "AB16C8EA",
+    "lastKnownWriteTime" : 1465138719,
+    "last_content_update" : 1465138719,
+    "path" : "~/git/SQLiteR/R/select.R",
+    "project_path" : "R/select.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

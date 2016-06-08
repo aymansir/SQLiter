@@ -1,11 +1,10 @@
 # SQLiter
 SQLiter is a wrapper for the RSQLite package.
 
----
 ##Introduction
 As a vision for simplifying how developers can access SQLite, we made it easier to do a lot of the grunt work of having to move between a R data frame format and writing to RSQLite
 
----
+
 ## Features 
 
 * The package has many methods that wrap around common SQL to interact with your database.
@@ -14,7 +13,7 @@ As a vision for simplifying how developers can access SQLite, we made it easier 
 
 * Familiar syntax/uses  SQL vocabulary in function names
 
----
+
 
 ## How to use
 
